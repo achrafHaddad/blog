@@ -9,7 +9,7 @@ export class GuardGuard implements CanActivate {
   constructor(private authS: AuthService, private router: Router) {}
 
   canActivate() {
-    if (this.authS.isAuth) {
+    if (!this.authS.isAuth) {
       return true;
     } else {
       this.router.navigate(["/login"]);

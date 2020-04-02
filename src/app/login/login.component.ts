@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
         this.message = "Please check your userid and password";
       }
     }
+    this.authS.getToken();
+    console.log(this.authS.isAuth);
   }
 
   ngOnInit() {

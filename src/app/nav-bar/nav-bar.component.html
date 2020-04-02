@@ -38,11 +38,7 @@
           <a class="nav-link" routerLink="/register">Sign Up</a>
         </li>
       </ng-template>
-      <li
-        class="nav-item dropdown"
-        ngbDropdown
-        *ngIf="conUser && authS.isAuth; else anonymous"
-      >
+      <li class="nav-item dropdown" ngbDropdown *ngIf="conUser; else anonymous">
         <a
           ngbDropdownToggle
           class="nav-link dropdown-toggle"
@@ -51,6 +47,7 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          *ngIf="authS.isAuth"
         >
           Welcome {{ conUser.name }}
         </a>
@@ -59,8 +56,12 @@
           class="dropdown-menu"
           aria-labelledby="navbarDropdown"
         >
-          <a class="dropdown-item" routerLink="/newPost">New Post</a>
-          <a class="dropdown-item" routerLink="postList">All Posts</a>
+          <a *ngIf="authS.isAuth" class="dropdown-item" routerLink="/newPost"
+            >New Post</a
+          >
+          <a *ngIf="authS.isAuth" class="dropdown-item" routerLink="postList"
+            >All Posts</a
+          >
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="logout()">Log Out</a>
         </div>

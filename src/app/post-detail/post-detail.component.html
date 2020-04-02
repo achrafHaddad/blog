@@ -1,17 +1,70 @@
 <div class="container">
   <form [formGroup]="postGroup">
-    <div class="card" style="width: 30rem;">
-      <img [src]="postGroup.value.imageUrl" class="card-img-top" />
+    <div [hidden]="!edit">
+      <div class="form-group">
+        <input
+          formControlName="imageUrl"
+          placeholder="imageUrl"
+          type="text"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          formControlName="title"
+          placeholder="title"
+          type="text"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          formControlName="content"
+          placeholder="content"
+          type="text"
+          class="form-control"
+        ></textarea>
+      </div>
+      <button
+        class="btn btn-1 btn-outline-success"
+        type="button"
+        (click)="subEdit()"
+      >
+        Edit
+      </button>
     </div>
 
-    <h5 class="card-title">{{ post.title }}</h5>
-    <div class=" d-flex justify-content-between">
-      <span>by</span>
-      <span
-        ><b>{{ post.name }}</b></span
+    <div [hidden]="edit">
+      <div class="card" style="width: 30rem;">
+        <img [src]="postGroup.value.imageUrl" class="card-img-top" />
+      </div>
+
+      <h5 class="card-title">{{ post.title }}</h5>
+      <div class=" d-flex justify-content-between">
+        <span>by</span>
+        <span
+          ><b>{{ post.name }}</b></span
+        >
+        <span> {{ post.publishDate | date: "short" }}</span>
+      </div>
+      <div>{{ post.content }}</div>
+      <button
+        *ngIf="post.uid == token.uid"
+        class="btn btn-1 btn-outline-danger m-2"
+        type="button"
+        (click)="delete()"
       >
-      <span> {{ post.publishDate | date: "short" }}</span>
+        Delete
+      </button>
+      <button
+        *ngIf="post.uid == token.uid"
+        class="btn btn-1 btn-outline-primary m-2"
+        type="button"
+        (click)="toEdit()"
+      >
+        Edit
+      </button>
     </div>
-    <div>{{ post.content }}</div>
   </form>
 </div>

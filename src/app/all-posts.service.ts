@@ -27,4 +27,9 @@ export class AllPostsService {
     this.posts = JSON.parse(localStorage.getItem("posts"));
     return this.posts[id];
   }
+  delete(id) {
+    this.posts = this.getPosts();
+    this.posts.splice(id, 1);
+    localStorage.setItem("posts", JSON.stringify(this.posts));
+  }
 }
