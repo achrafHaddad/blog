@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <a class="navbar-brand" routerLink="/">home</a>
+  <form class="form-inline mx-2">
+    <input
+      class="form-control "
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success mx-2" type="submit">
+      Search
+    </button>
+  </form>
+  <button
+    (click)="toggleNavbar()"
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    class="collapse navbar-collapse"
+    [ngClass]="{ show: navbarOpen }"
+    id="navbarSupportedContent"
+  >
+    <ul class="navbar-nav mr-auto">
+      <ng-template #anonymous>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login">Login </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register">Sign Up</a>
+        </li>
+      </ng-template>
+      <li class="nav-item dropdown" ngbDropdown *ngIf="conUser; else anonymous">
+        <a
+          ngbDropdownToggle
+          class="nav-link dropdown-toggle"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Welcome {{ conUser.name }}
+        </a>
+        <div
+          ngbDropdownMenu
+          class="dropdown-menu"
+          aria-labelledby="navbarDropdown"
+        >
+          <a class="dropdown-item" routerLink="/newPost">New Post</a>
+          <a class="dropdown-item" routerLink="postList">All Posts</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">Log Out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

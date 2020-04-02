@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <form class="form-signin" [formGroup]="regForm" (ngSubmit)="submit()">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputName" class="sr-only ">Name</label>
+    <input
+      formControlName="name"
+      type="text"
+      id="inputName"
+      class="form-control my-3"
+      placeholder="Name"
+      (blur)="logValidationErrors()"
+    />
+    <div
+      class="text-danger"
+      *ngIf="regForm.controls.name.touched && regForm.controls.name.invalid"
+    >
+      <mat-error *ngIf="formErrors?.name">
+        <strong>{{ formErrors.name }}</strong>
+      </mat-error>
+    </div>
+    <label for="inputEmail" class="sr-only ">Email address</label>
+    <input
+      formControlName="email"
+      type="email"
+      id="inputEmail"
+      class="form-control my-3"
+      placeholder="Email address"
+      (blur)="logValidationErrors()"
+    />
+    <div
+      class="text-danger"
+      *ngIf="regForm.controls.email.touched && regForm.controls.email.invalid"
+    >
+      <mat-error *ngIf="formErrors?.email">
+        <strong>{{ formErrors.email }}</strong>
+      </mat-error>
+    </div>
+    <label for="inputPassword" class="sr-only ">Password</label>
+    <input
+      formControlName="pass"
+      type="password"
+      id="inputPassword"
+      class="form-control my-3"
+      placeholder="Password"
+    />
+    <div
+      class="text-danger"
+      *ngIf="regForm.controls.pass.touched && regForm.controls.pass.invalid"
+    >
+      <mat-error *ngIf="regForm.controls.pass.errors?.required">
+        <strong>Password is required.</strong>
+      </mat-error>
+      <mat-error *ngIf="regForm.controls.pass.errors?.pattern">
+        <strong
+          >At least 8 characters in length Lowercase letters Uppercase letters
+          Numbers Special characters</strong
+        >
+      </mat-error>
+    </div>
+    <button
+      class="btn btn-lg btn-primary btn-block my-2"
+      type="submit"
+      [disabled]="!regForm.valid"
+    >
+      Sign in
+    </button>
+  </form>
+</div>

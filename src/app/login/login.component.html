@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <form class="form-signin" [formGroup]="logForm" (ngSubmit)="onSubmit()">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only ">Email address</label>
+    <input
+      formControlName="email"
+      type="email"
+      id="inputEmail"
+      class="form-control my-3"
+      placeholder="Email address"
+      required=""
+      autofocus=""
+    />
+    <div
+      class="text-danger"
+      *ngIf="logForm.controls.email.touched && logForm.controls.email.invalid"
+    >
+      <mat-error *ngIf="logForm.controls.email.errors?.required">
+        <strong>Email is required.</strong>
+      </mat-error>
+      <mat-error *ngIf="logForm.controls.email.errors?.email">
+        <strong>Enter a valid email.</strong>
+      </mat-error>
+    </div>
+    <label for="inputPassword" class="sr-only ">Password</label>
+    <input
+      formControlName="pass"
+      type="password"
+      id="inputPassword"
+      class="form-control my-3"
+      placeholder="Password"
+      required=""
+    />
+    <div
+      class="text-danger"
+      *ngIf="logForm.controls.pass.touched && logForm.controls.pass.invalid"
+    >
+      <mat-error *ngIf="logForm.controls.pass.errors?.required">
+        <strong>Password is required.</strong>
+      </mat-error>
+    </div>
+    <button
+      class="btn btn-lg btn-primary btn-block my-2"
+      type="submit"
+      [disabled]="!logForm.valid"
+    >
+      Sign in
+    </button>
+  </form>
+</div>

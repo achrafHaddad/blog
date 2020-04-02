@@ -1,0 +1,19 @@
+<div *ngFor="let user of users">
+  <div *ngFor="let post of posts; let i = index">
+    <div *ngIf="user.uid == post.uid" class="card" style="width: 18rem;">
+      <a class="btn btn-primary" [routerLink]="['/post', i]">
+        <img [src]="post.imageUrl" class="card-img-top" />
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <div class=" d-flex justify-content-between">
+            <span>by</span>
+            <span
+              ><b>{{ post.name }}</b></span
+            >
+            {{ post.publishDate | date: "short" }}
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

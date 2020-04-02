@@ -1,0 +1,17 @@
+<div class="container">
+  <form [formGroup]="postGroup">
+    <div class="card" style="width: 30rem;">
+      <img [src]="postGroup.value.imageUrl" class="card-img-top" />
+    </div>
+
+    <h5 class="card-title">{{ post.title }}</h5>
+    <div class=" d-flex justify-content-between">
+      <span>by</span>
+      <span
+        ><b>{{ post.name }}</b></span
+      >
+      <span> {{ post.publishDate | date: "short" }}</span>
+    </div>
+    <div>{{ post.content }}</div>
+  </form>
+</div>

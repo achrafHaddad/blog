@@ -1,0 +1,43 @@
+<div class="container mb-5 mt-2 row">
+  <div class="col-6">
+    <form [formGroup]="postGroup" (ngSubmit)="submit()">
+      <div class="form-group">
+        <input
+          formControlName="imageUrl"
+          placeholder="imageUrl"
+          type="text"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          formControlName="title"
+          placeholder="title"
+          type="text"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          formControlName="content"
+          placeholder="content"
+          type="text"
+          class="form-control"
+        ></textarea>
+      </div>
+      <div>
+        <button class="btn btn-1 btn-outline-success" type="submit">
+          Post
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="col-6">
+    <div class="card" style="width: 18rem;">
+      <img [src]="postGroup.value.imageUrl" class="card-img-top" />
+    </div>
+    <h3>{{ postGroup.value.title }}</h3>
+    <p>{{ postGroup.value.content }}</p>
+  </div>
+</div>
