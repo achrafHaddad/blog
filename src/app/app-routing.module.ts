@@ -7,15 +7,17 @@ import { AllPostsService } from "./all-posts.service";
 import { NewPostComponent } from "./new-post/new-post.component";
 import { PostDetailComponent } from "./post-detail/post-detail.component";
 import { HomeComponent } from "./home/home.component";
+import { GuardGuard } from "./guard";
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "postList", component: PostListComponent },
-  { path: "newPost", component: NewPostComponent },
+  { path: "postList", canActivate: [GuardGuard], component: PostListComponent },
+  { path: "newPost", canActivate: [GuardGuard], component: NewPostComponent },
   { path: "post/:id", component: PostDetailComponent },
-  { path: "post-detail", component: PostDetailComponent }
+  { path: "post-detail", component: PostDetailComponent },
+  { path: "", redirectTo: "home", pathMatch: "full" }
 ];
 
 @NgModule({

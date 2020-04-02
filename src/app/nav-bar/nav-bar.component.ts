@@ -11,7 +11,7 @@ import { SubService } from "../sub.service";
 export class NavBarComponent implements OnInit {
   constructor(
     private router: Router,
-    private authS: AuthService,
+    public authS: AuthService,
     private sub: SubService
   ) {
     this.conUser = JSON.parse(localStorage.getItem("token"));

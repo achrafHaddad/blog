@@ -38,7 +38,11 @@
           <a class="nav-link" routerLink="/register">Sign Up</a>
         </li>
       </ng-template>
-      <li class="nav-item dropdown" ngbDropdown *ngIf="conUser; else anonymous">
+      <li
+        class="nav-item dropdown"
+        ngbDropdown
+        *ngIf="conUser && authS.isAuth; else anonymous"
+      >
         <a
           ngbDropdownToggle
           class="nav-link dropdown-toggle"
